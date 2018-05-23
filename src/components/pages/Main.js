@@ -4,6 +4,8 @@ import promisify from 'es6-promisify';
 import BlocksTable from '../ethereum/BlocksTable';
 import TransactionsTable from '../ethereum/TransactionsTable';
 
+import Loading from '../layout/Loading';
+
 const MAX_HISTORY = 10;
 
 class Main extends Component {
@@ -63,15 +65,22 @@ class Main extends Component {
 
   render() {
     return (
-      <div className="pure-g main-container">
-        <div className="pure-u-1-1">
-          <h2><i className="fa fa-cube"></i>Latest Blocks</h2>
-          <BlocksTable blocks={this.state.latestBlocks} />
-        </div>
-        <div className="pure-u-1-1">
-          <h2><i className="fa fa-exchange"></i>Latest Transactions</h2>
-          <TransactionsTable txs={this.state.latestTxs} />
-        </div>
+      <div>
+      { this.loading
+        ?
+        <div className="pure-g main-container">
+          <div className="pure-u-1-1">
+            <h2><i className="fa fa-cube"></i>Latest Blocks</h2>
+            <BlocksTable blocks={this.state.latestBlocks} />
+          </div>
+          <div className="pure-u-1-1">
+            <h2><i className="fa fa-exchange"></i>Latest Transactions</h2>
+            <TransactionsTable txs={this.state.latestTxs} />
+          </div>
+        </div> 
+        :
+        <Loading />
+      }
       </div>
     )
   }
