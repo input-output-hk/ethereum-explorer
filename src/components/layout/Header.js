@@ -25,6 +25,7 @@ class Header extends Component {
     return (
       <div className="header">
         <div className="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
+            <img src="./assets/testnet-logo.svg" className="testnet-logo" alt="Testnet Hub Blockchain Explorer"/>
             <a className="pure-menu-heading" href={`${process.env.PUBLIC_URL}/`}>Lightweight Ethereum Explorer</a>
             <ul className="pure-menu-list">
               <li>

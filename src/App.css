@@ -97,7 +97,7 @@ a.pure-button-primary {
   box-shadow: 0 1px 1px rgba(0,0,0, 0.10);
 }
 .home-menu {
-  background: #2d3e50;
+  background: #121327;
 }
 .pure-menu.pure-menu-fixed {
   /* Fixed menus normally have a border at the bottom. */
@@ -137,7 +137,7 @@ a.pure-button-primary {
   margin-top: 40px;
   min-height: 12%;
   z-index: 2;
-  background: white;
+  background: #232644;
 
 }
 
@@ -282,3 +282,8 @@ a.pure-button-primary {
 .main-container table {
   width: 100%;
 }
+
+/*
+* -- TESTNET Brand STYLES --
+*/
+
