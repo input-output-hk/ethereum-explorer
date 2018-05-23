@@ -16,7 +16,7 @@ stdenv.mkDerivation {
   '';
 
   installPhase = ''
-    mkdir -p $out/lightweight-eth-explorer
-    cp -r build/* $out/lightweight-eth-explorer/
+    mkdir -p $out
+    cp -r build/* $out/
   '';
 }
