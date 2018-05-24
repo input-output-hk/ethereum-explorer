@@ -49,6 +49,7 @@ class Main extends Component {
           latestTxs: txs.concat(this.state.latestTxs).splice(0, MAX_HISTORY)
         })
       }
+      this.loading = false;
     }
     finally {
       this.loading = false;
@@ -66,8 +67,10 @@ class Main extends Component {
   render() {
     return (
       <div>
-      { this.loading
+      { this.state.latestBlocks.length === 0
         ?
+        <Loading />
+        :
         <div className="pure-g main-container">
           <div className="pure-u-1-1">
             <h2><i className="fa fa-cube"></i>Latest Blocks</h2>
@@ -78,8 +81,6 @@ class Main extends Component {
             <TransactionsTable txs={this.state.latestTxs} />
           </div>
         </div> 
-        :
-        <Loading />
       }
       </div>
     )
