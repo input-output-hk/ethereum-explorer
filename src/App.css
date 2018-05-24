@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+
+
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -11,8 +14,13 @@
 body {
   line-height: 1.7em;
   color: #7f8c8d;
-  font-size: 13px;
-  font-family: 'Libre Franklin', sans-serif;
+  font-size: 16px;
+  font-family: 'Source Sans Pro', sans-serif;
+  background: #121327;
+}
+
+.pure-g.pure-g.pure-g [class*=pure-u] {
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 h1,
@@ -21,8 +29,10 @@ h3,
 h4,
 h5,
 h6,
-label {
-  color: #34495e;
+label,
+.pure-menu a {
+  color: white;
+  opacity: 0.75;
 }
 
 .pure-img-responsive {
@@ -71,8 +81,8 @@ label {
 * -- PURE BUTTON STYLES --
 * I want my pure-button elements to look a little different
 */
-.pure-button {
-  background-color: #1f8dd6;
+.pure-button, .pure-button.pure-button.pure-button.pure-button-primary {
+  background-color: #832dc4;
   color: white;
   padding: 0.5em 2em;
   border-radius: 5px;
@@ -93,11 +103,10 @@ a.pure-button-primary {
 
 .home-menu {
   padding: 0.5em 0.5em 0.5em 0;
-  text-align: center;
   box-shadow: 0 1px 1px rgba(0,0,0, 0.10);
 }
 .home-menu {
-  background: #2d3e50;
+  background: #121327;
 }
 .pure-menu.pure-menu-fixed {
   /* Fixed menus normally have a border at the bottom. */
@@ -116,9 +125,6 @@ a.pure-button-primary {
   color: white;
 }
 
-.home-menu a {
-  color: #6FBEF3;
-}
 .home-menu li a:hover,
 .home-menu li a:focus {
   background: none;
@@ -134,10 +140,10 @@ a.pure-button-primary {
   /* These styles are required for the "scroll-over" effect */
   position: absolute;
   width: 100%;
-  margin-top: 40px;
+  margin-top: 70px;
   min-height: 12%;
   z-index: 2;
-  background: white;
+  background: #232644;
 
 }
 
@@ -193,15 +199,6 @@ a.pure-button-primary {
       font-size: 16px;
   }
 
-  /* We can align the menu header to the left, but float the
-  menu items to the right. */
-  .home-menu {
-      text-align: left;
-  }
-      .home-menu ul {
-          float: right;
-      }
-
   /* We increase the height of the splash-container */
 /*    .splash-container {
       height: 500px;
@@ -239,7 +236,7 @@ a.pure-button-primary {
 }
 
 #search-btn {
-  background:#0099ff;
+  background:#832dc4;
   color:white;
   padding:10px 5px;
   border:0 none;
@@ -282,3 +279,9 @@ a.pure-button-primary {
 .main-container table {
   width: 100%;
 }
+
+/*
+* -- TESTNET Brand STYLES --
+*/
+@import './theme/testnet.css';
+
