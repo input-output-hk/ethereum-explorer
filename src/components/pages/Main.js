@@ -25,7 +25,7 @@ class Main extends Component {
   }
 
   async loadTransactions(eth, block) {
-    const transactions = []
+    const transactions = [];
     for (let i = 0; i < block.transactions.length; i++) {
       const tx = await promisify(eth.getTransaction)(block.transactions[i]);
       transactions.unshift(tx);
@@ -39,7 +39,7 @@ class Main extends Component {
     try {
       const latestBlockNumber = await promisify(eth.getBlockNumber)();
       const latestBlockKnown = this.getLatestBlockKnown();
-      const fromBlock = Math.max(latestBlockNumber - MAX_HISTORY, latestBlockKnown + 1)
+      const fromBlock = Math.max(latestBlockNumber - MAX_HISTORY, latestBlockKnown + 1);
       for (let i = fromBlock; i <= latestBlockNumber; i++) {
         const block = await promisify(eth.getBlock)(i);
         const txs = await this.loadTransactions(eth, block);
@@ -47,7 +47,7 @@ class Main extends Component {
         this.setState({
           latestBlocks: this.state.latestBlocks.splice(0, MAX_HISTORY),
           latestTxs: txs.concat(this.state.latestTxs).splice(0, MAX_HISTORY)
-        })
+        });
       }
       this.loading = false;
     }
@@ -80,10 +80,10 @@ class Main extends Component {
             <h2><i className="fa fa-exchange"></i>Latest Transactions</h2>
             <TransactionsTable txs={this.state.latestTxs} />
           </div>
-        </div> 
+        </div>
       }
       </div>
-    )
+    );
   }
 }
 

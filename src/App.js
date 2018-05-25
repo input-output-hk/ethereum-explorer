@@ -44,7 +44,7 @@ class App extends Component {
       case BLOCK:
         window.location = `${process.env.PUBLIC_URL}/block/${searchStr}`;
         break;
-      case ADDRESS: 
+      case ADDRESS:
         window.location = `${process.env.PUBLIC_URL}/transaction/${searchStr}`;
         break;
       default:
@@ -60,7 +60,7 @@ class App extends Component {
             { this.renderBody(web3) }
           </div>
         </BrowserRouter>
-      )
+      );
   }
 
   render() {
