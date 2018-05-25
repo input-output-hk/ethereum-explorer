@@ -1,7 +1,7 @@
 {
   "name": "lightweight-eth-explorer",
   "version": "0.1.0",
-  "homepage": "https://alanverbner.github.io/lightweight-eth-explorer",
+  "homepage": "https://www.iohk.io",
   "private": true,
   "dependencies": {
     "autoprefixer": "7.1.2",
