@@ -69,11 +69,6 @@ const BlockInfoTable = ({ block, latestBlockNumber }) => {
         </tr>
 
         <tr>
-            <td>Data (Translated)</td>
-            <td>{ "//FIXME" }</td>
-        </tr>
-
-        <tr>
             <td>Number of Uncle Blocks</td>
             <td>{ block.uncles.length }</td>
         </tr>
