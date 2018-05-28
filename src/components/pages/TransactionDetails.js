@@ -12,15 +12,18 @@ class TransactionDetails extends Component {
   }
 
   async loadData(web3, id) {
-    const tx = await promisify(web3.eth.getTransaction)(id)
+    const tx = await promisify(web3.eth.getTransaction)(id);
+    const receipt = await promisify(web3.eth.getTransactionReceipt)(id);
     this.setState({
-      tx
+      tx: tx,
+      receipt: receipt
     })
   }
 
   componentWillReceiveProps({web3, match}) {
     this.setState({
-      tx: undefined
+      tx: undefined,
+      receipt: undefined
     })
     this.loadData(web3, match.params.id);
   }
@@ -33,7 +36,7 @@ class TransactionDetails extends Component {
     return (
       <div>
         <h2>Transaction Details</h2>
-        <TransactionInfoTable tx={this.state.tx} />
+        <TransactionInfoTable tx={this.state.tx} receipt={this.state.receipt} />
       </div>
     )
   }

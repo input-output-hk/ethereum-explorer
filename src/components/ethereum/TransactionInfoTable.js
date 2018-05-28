@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { bigNumber } from '../../utils/format-utils';
 
-const BlockInfoTable = ({tx}) => {
+const TransactionInfoTable = ({tx, receipt}) => {
   return (
     <table className="pure-table pure-table-horizontal">
       <thead>
@@ -32,8 +32,12 @@ const BlockInfoTable = ({tx}) => {
           <td>{ bigNumber(tx.gasPrice) }</td>
         </tr>
         <tr>
-          <td>Gas Used</td>
+          <td>Gas Provided</td>
           <td>{ tx.gas }</td>
+        </tr>
+        <tr>
+          <td>Gas Used</td>
+          <td>{ receipt.gasUsed }</td>
         </tr>
         <tr>
           <td>Nonce</td>
@@ -43,10 +47,14 @@ const BlockInfoTable = ({tx}) => {
           <td>Input Data</td>
           <td><textarea disabled="disabled">{ tx.input }</textarea></td>
         </tr>
+        <tr>
+          <td>Contract Address</td>
+          <td>{ receipt.contractAddress }</td>
+        </tr>
       </tbody>  
     </table>
   )
 
 }
 
-export default BlockInfoTable;
+export default TransactionInfoTable;

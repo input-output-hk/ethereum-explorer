@@ -33,7 +33,7 @@ const TransactionsTable = ({txs}) => {
           <th>Block #</th>
           <th>From</th>
           <th>To</th>
-          <th>Gas Used</th>
+          <th>Gas Provided</th>
           <th>Value</th>
         </tr>
       </thead>
