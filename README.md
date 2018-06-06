@@ -12,4 +12,4 @@ This is a lightweight ethereum explorer that runs without db. It just grabs data
 - [ ] Look for `FIXME` and fix them :P
 - [ ] Tests
 - [ ] Use localstorage to cache N downloaded blocks
-- [ ] Complete this `README`
+- [X] Complete this `README`
