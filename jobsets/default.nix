@@ -1,7 +1,10 @@
 { nixpkgs ? <nixpkgs>
 , declInput ? {}
+, prsJSON ? ./simple-pr-dummy.json
 }:
 let pkgs = import nixpkgs {};
+
+    prs = builtins.fromJSON (builtins.readFile prsJSON );
 
     mkGitSrc = { repo, branch ? "refs/heads/master" }: {
       type = "git";
@@ -45,6 +48,19 @@ let pkgs = import nixpkgs {};
           explorerBranch = "refs/heads/master";
         })
       ]
+      ++
+      (pkgs.lib.mapAttrsToList
+        (
+          num:
+          info:
+            mkJob {
+              name = "eth-explorer-PR-${num}";
+              description = info.title;
+              mantisBranch = info.head.sha;
+            }
+        )
+        prs
+      )
     );
 in {
   jobsets = pkgs.runCommand "spec.json" {} ''
