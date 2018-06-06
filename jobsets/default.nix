@@ -56,7 +56,7 @@ let pkgs = import nixpkgs {};
             mkJob {
               name = "eth-explorer-PR-${num}";
               description = info.title;
-              mantisBranch = info.head.sha;
+              explorerBranch = info.head.sha;
             }
         )
         prs
