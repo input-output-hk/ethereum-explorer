@@ -18,9 +18,7 @@ let pkgs = import nixpkgs {};
 
         inputs = {
           src = mkGitSrc {
-            # This isn't public-access, so cannot be accessed over HTTP(S).
-            # Access with git@ and ensure the hydra host's keys will be accepted.
-            repo = "git@github.com:input-output-hk/ethereum-explorer.git";
+            repo = "https://github.com/input-output-hk/ethereum-explorer.git";
             branch = explorerBranch;
           };
 
