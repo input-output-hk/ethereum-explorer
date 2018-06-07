@@ -12,15 +12,13 @@ in stdenv.mkDerivation {
 
   configurePhase = ''
     export HOME="$NIX_BUILD_TOP"
-  '';
 
-  buildPhase = ''
     yarn config --offline set yarn-offline-mirror ${offlineCache}
 
     yarn install --offline --frozen-lockfile --ignore-engines --ignore-scripts
-
-    yarn run build
   '';
+
+  buildPhase = "yarn run build";
 
   installPhase = "mv build $out";
 }
