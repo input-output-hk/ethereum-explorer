@@ -1,5 +1,7 @@
 import Web3 from 'web3'
 
+const USE_INJECTED_WEB3 = false
+
 const FALLBACK_PROVIDER = window.location.protocol + "//" + window.location.hostname + ':8546';
 
 let getWeb3 = new Promise(function(resolve, reject) {
@@ -9,7 +11,7 @@ let getWeb3 = new Promise(function(resolve, reject) {
     var web3 = window.web3
 
     // Checking if Web3 has been injected by the browser (Mist/MetaMask)
-    if (typeof web3 !== 'undefined') {
+    if (typeof web3 !== 'undefined' && USE_INJECTED_WEB3) {
       // Use Mist/MetaMask's provider.
       web3 = new Web3(web3.currentProvider)
 
