@@ -1,6 +1,6 @@
 import Web3 from 'web3'
 
-const USE_INJECTED_WEB3 = false
+const USE_INJECTED_WEB3 = false;
 
 const FALLBACK_PROVIDER = window.location.protocol + "//" + window.location.hostname + ':8546';
 
