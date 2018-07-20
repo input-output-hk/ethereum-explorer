@@ -30,7 +30,7 @@ class AccountDetails extends Component {
 
   componentWillReceiveProps({web3, match}) {
     this.setState({
-      block: undefined
+      account: undefined
     })
     this.loadData(web3, match.params.address);
   }
