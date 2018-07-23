@@ -45,7 +45,7 @@ class App extends Component {
         window.location = `${process.env.PUBLIC_URL}/block/${searchStr}`;
         break;
       case ADDRESS:
-        window.location = `${process.env.PUBLIC_URL}/transaction/${searchStr}`;
+        window.location = `${process.env.PUBLIC_URL}/account/${searchStr}`;
         break;
       default:
         break;
