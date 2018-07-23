@@ -20,5 +20,9 @@ in stdenv.mkDerivation {
 
   buildPhase = "yarn run build";
 
+  doCheck = true;
+
+  checkPhase = "yarn test --coverage --ci --no-color";
+
   installPhase = "mv build $out";
 }

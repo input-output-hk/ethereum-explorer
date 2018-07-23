@@ -77,9 +77,14 @@
       "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
       "^(?!.*\\.(js|jsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
     },
+    "roots": [
+      "<rootDir>/src/",
+      "<rootDir>/test/"
+    ],
     "transformIgnorePatterns": [
       "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
     ],
+    "moduleDirectories": [ "node_modules", "src" ],
     "moduleNameMapper": {
       "^react-native$": "react-native-web"
     },

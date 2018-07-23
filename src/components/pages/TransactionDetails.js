@@ -12,22 +12,33 @@ class TransactionDetails extends Component {
   }
 
   async loadData(web3, id) {
-    const tx = await promisify(web3.eth.getTransaction)(id);
-    const receipt = await promisify(web3.eth.getTransactionReceipt)(id);
-    this.setState({
-      tx: tx,
-      receipt: receipt
-    })
+    Promise.all([
+      promisify(web3.eth.getTransaction)(id),
+      promisify(web3.eth.getTransactionReceipt)(id)
+    ])
+      .then(
+        result => {
+          const [tx, receipt ] = result;
+          this.setState({
+            tx: tx,
+            receipt: receipt
+          });
+        }
+      )
+      .catch(
+        error => this.setState({ error: error })
+      );
   }
 
   componentWillReceiveProps({web3, match}) {
     this.setState({
       tx: undefined,
-      receipt: undefined
+      receipt: undefined,
+      error: undefined
     })
     this.loadData(web3, match.params.id);
   }
- 
+
   componentWillMount() {
     this.componentWillReceiveProps(this.props)
   }
@@ -44,8 +55,9 @@ class TransactionDetails extends Component {
   render() {
     return (
       <div>
-        <EthereumEntity 
+        <EthereumEntity
           entity={this.state.tx}
+          error={this.state.error}
           errorMessage={`Transaction ${this.props.match.params.id} was not found`}
           render={this.renderContents.bind(this)}/>
       </div>

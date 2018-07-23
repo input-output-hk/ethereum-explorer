@@ -12,29 +12,34 @@ class AccountDetails extends Component {
   }
 
   async loadData(web3, address) {
-    const accountResult = await Promise.all([
+    Promise.all([
       promisify(web3.eth.getBalance)(address),
       promisify(web3.eth.getCode)(address),
       promisify(web3.eth.getTransactionCount)(address)
-    ]);
-
-    this.setState({
-      account: {
-        address: address,
-        balance: web3.fromWei(accountResult[0], 'ether'),
-        code: accountResult[1],
-        transactionCount: accountResult[2]
-      }
-    })
+    ])
+      .then(
+        accountResult => this.setState({
+          account: {
+            address: address,
+            balance: web3.fromWei(accountResult[0], 'ether'),
+            code: accountResult[1],
+            transactionCount: accountResult[2]
+          }
+        })
+      )
+      .catch(
+        error => this.setState({ error: error })
+      );
   }
 
   componentWillReceiveProps({web3, match}) {
     this.setState({
-      block: undefined
+      account: undefined,
+      error: undefined
     })
     this.loadData(web3, match.params.address);
   }
- 
+
   componentWillMount() {
     this.componentWillReceiveProps(this.props)
   }
@@ -51,8 +56,9 @@ class AccountDetails extends Component {
   render() {
     return (
       <div>
-        <EthereumEntity 
+        <EthereumEntity
           entity={this.state.account}
+          error={this.state.error}
           errorMessage={`Account ${this.props.match.params.id} was not found`}
           render={this.renderContents.bind(this)}/>
       </div>
