@@ -7,7 +7,7 @@ const TransactionInfoTable = ({tx, receipt}) => {
     <table className="pure-table pure-table-horizontal">
       <thead>
           <tr>
-            <th colspan="2">Transaction Hash: {tx.hash}</th>
+            <th colSpan="2">Transaction Hash: {tx.hash}</th>
           </tr>
       </thead>
       <tbody>
