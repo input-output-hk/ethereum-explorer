@@ -6,7 +6,7 @@ const AccountInfoTable = ({ account }) => {
     <table className="pure-table pure-table-horizontal">
       <thead>
           <tr>
-            <th colspan="2">Address: {account.address}</th>
+            <th colSpan="2">Address: {account.address}</th>
           </tr>
       </thead>
       <tbody>
@@ -20,7 +20,7 @@ const AccountInfoTable = ({ account }) => {
         </tr>
         <tr>
             <td>Code</td>
-            <td><textarea disabled="disabled">{ account.code }</textarea></td>
+            <td><textarea disabled="disabled" defaultValue={account.code}></textarea></td>
         </tr>
       </tbody>
     </table>
