@@ -13,20 +13,31 @@ class BlockDetails extends Component {
   }
 
   async loadData(web3, id) {
-    const [block, latestBlockNumber] = await Promise.all([promisify(web3.eth.getBlock)(id), promisify(web3.eth.getBlockNumber)()])
-    this.setState({
-      block,
-      latestBlockNumber
-    })
+    this.state.error = undefined;
+    Promise.all([promisify(web3.eth.getBlock)(id), promisify(web3.eth.getBlockNumber)()])
+      .then(
+        result => {
+          const [block, latestBlockNumber] = result;
+          this.setState({
+            block: block,
+            latestBlockNumber: latestBlockNumber
+          });
+        }
+      )
+      .catch(
+        error => this.setState({ error: error })
+      );
   }
 
   componentWillReceiveProps({web3, match}) {
     this.setState({
-      block: undefined
-    })
+      block: undefined,
+      latestBlockNumber: undefined,
+      error: undefined
+    });
     this.loadData(web3, match.params.id);
   }
- 
+
   componentWillMount() {
     this.componentWillReceiveProps(this.props)
   }
@@ -55,8 +66,9 @@ class BlockDetails extends Component {
   render() {
     return (
       <div>
-        <EthereumEntity 
+        <EthereumEntity
           entity={this.state.block}
+          error={this.state.error}
           errorMessage={`Block ${this.props.match.params.id} was not found`}
           render={this.renderContent.bind(this)}/>
       </div>

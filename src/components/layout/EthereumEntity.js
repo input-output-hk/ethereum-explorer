@@ -1,18 +1,20 @@
 import React from 'react';
 import Loading from './Loading';
 
-const EthereumEntity = ({entity, errorMessage, render}) => {
-  if(entity === undefined) return <Loading />
-
-  if(entity === null) {
+const EthereumEntity = ({entity, error, errorMessage, render}) => {
+  if(error !== undefined) {
     return (
       <div className="pure-alert pure-alert-error">
         {errorMessage}
       </div>
     )
-  } else {
-    return render();
   }
+
+  if(entity === undefined) {
+    return <Loading />
+  }
+
+  return render();
 }
 
 export default EthereumEntity;
