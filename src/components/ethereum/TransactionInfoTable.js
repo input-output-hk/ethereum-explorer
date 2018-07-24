@@ -2,6 +2,22 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { bigNumber } from '../../utils/format-utils';
 
+const translateReceiptStatus = status => {
+  switch(parseInt(status, 16)) {
+  case 0: return "Success.";
+  case 1: return "Function does not exist.";
+  case 2: return "Function has wrong signature.";
+  case 3: return "Function does not exist on empty account.";
+  case 4: return "Execution of instructions led to failure.";
+  case 5: return "Out of gas.";
+  case 6: return "Deploying to an account that already exists.";
+  case 7: return "Insufficient balance to transfer.";
+  case 8: return "Negative balance or gas limit or call depth exceeded.";
+  case 9: return "Contract being uploaded to blockchain is not well formed.";
+  default: return "";
+  }
+};
+
 const TransactionInfoTable = ({tx, receipt}) => {
   return (
     <table className="pure-table pure-table-horizontal">
@@ -22,6 +38,14 @@ const TransactionInfoTable = ({tx, receipt}) => {
         <tr>
           <td>To</td>
           <td>{ tx.to }</td>
+        </tr>
+        <tr>
+          <td>Status</td>
+          <td>
+            { receipt.status }
+            <br/>
+            { translateReceiptStatus(receipt.status) }
+          </td>
         </tr>
         <tr>
           <td>Value</td>
