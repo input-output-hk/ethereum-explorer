@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { bigNumber } from '../../utils/format-utils';
 
-const translateReceiptStatus = status => {
-  switch(parseInt(status, 16)) {
+const translateReceiptStatusCode = statusCode => {
+  switch(parseInt(statusCode, 16)) {
   case 0: return "Success.";
   case 1: return "Function does not exist.";
   case 2: return "Function has wrong signature.";
@@ -40,11 +40,11 @@ const TransactionInfoTable = ({tx, receipt}) => {
           <td>{ tx.to }</td>
         </tr>
         <tr>
-          <td>Status</td>
+          <td>Status Code</td>
           <td>
-            { receipt.status }
+            { receipt.statusCode }
             <br/>
-            { translateReceiptStatus(receipt.status) }
+            { translateReceiptStatusCode(receipt.statusCode) }
           </td>
         </tr>
         <tr>
