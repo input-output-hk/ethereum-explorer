@@ -45,7 +45,7 @@ const TransactionInfoTable = ({tx, receipt}) => {
         </tr>
         <tr>
           <td>Input Data</td>
-          <td><textarea disabled="disabled">{ tx.input }</textarea></td>
+          <td><textarea disabled="disabled" defaultValue={ tx.input }></textarea></td>
         </tr>
         <tr>
           <td>Contract Address</td>
