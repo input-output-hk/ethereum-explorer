@@ -51,7 +51,7 @@ const TransactionInfoTable = ({tx, receipt}) => {
           <td>Contract Address</td>
           <td>{ receipt.contractAddress }</td>
         </tr>
-      </tbody>  
+      </tbody>
     </table>
   )
 
