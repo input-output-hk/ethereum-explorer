@@ -68,7 +68,7 @@ in {
     ${builtins.toXML declInput}
     EOF
 
-    cat > $out <<EOF
+    tee $out <<EOF
     ${builtins.toJSON jobsetDefinition}
     EOF
   '';
