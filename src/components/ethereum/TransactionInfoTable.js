@@ -19,6 +19,22 @@ const translateReceiptStatusCode = statusCode => {
 };
 
 const TransactionInfoTable = ({tx, receipt}) => {
+  var statusCell = "-",
+      gasCell = "-",
+      addressCell = "-";
+
+  if (receipt) {
+    statusCell = (
+        <span>
+        { receipt.statusCode }
+        <br/>
+        { translateReceiptStatusCode(receipt.statusCode) }
+      </span>
+    );
+    gasCell = receipt.gasUsed;
+    addressCell = receipt.contractAddress;
+  };
+
   return (
     <table className="pure-table pure-table-horizontal">
       <thead>
@@ -41,11 +57,7 @@ const TransactionInfoTable = ({tx, receipt}) => {
         </tr>
         <tr>
           <td>Status Code</td>
-          <td>
-            { receipt.statusCode }
-            <br/>
-            { translateReceiptStatusCode(receipt.statusCode || "") }
-          </td>
+          <td>{ statusCell }</td>
         </tr>
         <tr>
           <td>Value</td>
@@ -61,7 +73,7 @@ const TransactionInfoTable = ({tx, receipt}) => {
         </tr>
         <tr>
           <td>Gas Used</td>
-          <td>{ receipt.gasUsed }</td>
+          <td>{ gasCell }</td>
         </tr>
         <tr>
           <td>Nonce</td>
@@ -73,7 +85,7 @@ const TransactionInfoTable = ({tx, receipt}) => {
         </tr>
         <tr>
           <td>Contract Address</td>
-          <td>{ receipt.contractAddress }</td>
+          <td>{ addressCell }</td>
         </tr>
       </tbody>
     </table>
