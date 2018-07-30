@@ -25,7 +25,7 @@ const TransactionInfoTable = ({tx, receipt}) => {
 
   if (receipt) {
     statusCell = (
-        <span>
+      <span>
         { receipt.statusCode }
         <br/>
         { translateReceiptStatusCode(receipt.statusCode) }
