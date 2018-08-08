@@ -26,9 +26,11 @@ class Main extends Component {
 
   async loadTransactions(eth, block) {
     const transactions = [];
-    for (let i = 0; i < block.transactions.length; i++) {
-      const tx = await promisify(eth.getTransaction)(block.transactions[i]);
-      transactions.unshift(tx);
+    if (block && block.transactions) {
+      for (let i = 0; i < block.transactions.length; i++) {
+        const tx = await promisify(eth.getTransaction)(block.transactions[i]);
+        transactions.unshift(tx);
+      }
     }
     return transactions;
   }
@@ -42,12 +44,14 @@ class Main extends Component {
       const fromBlock = Math.max(latestBlockNumber - MAX_HISTORY, latestBlockKnown + 1);
       for (let i = fromBlock; i <= latestBlockNumber; i++) {
         const block = await promisify(eth.getBlock)(i);
-        const txs = await this.loadTransactions(eth, block);
-        this.state.latestBlocks.unshift(block);
-        this.setState({
-          latestBlocks: this.state.latestBlocks.splice(0, MAX_HISTORY),
-          latestTxs: txs.concat(this.state.latestTxs).splice(0, MAX_HISTORY)
-        });
+        if (block) {
+          const txs = await this.loadTransactions(eth, block);
+          this.state.latestBlocks.unshift(block);
+          this.setState({
+            latestBlocks: this.state.latestBlocks.splice(0, MAX_HISTORY),
+            latestTxs: txs.concat(this.state.latestTxs).splice(0, MAX_HISTORY)
+          });
+        };
       }
       this.loading = false;
     }
