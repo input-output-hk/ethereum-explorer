@@ -1,4 +1,4 @@
-import Web3 from 'web3'
+import Web3 from 'web3';
 
 const USE_INJECTED_WEB3 = false;
 
@@ -7,36 +7,36 @@ const FALLBACK_PROVIDER = '/api/';
 let getWeb3 = new Promise(function(resolve, reject) {
   // Wait for loading completion to avoid race conditions with web3 injection timing.
   window.addEventListener('load', function() {
-    var results
-    var web3 = window.web3
+    var results;
+    var web3 = window.web3;
 
     // Checking if Web3 has been injected by the browser (Mist/MetaMask)
     if (typeof web3 !== 'undefined' && USE_INJECTED_WEB3) {
       // Use Mist/MetaMask's provider.
-      web3 = new Web3(web3.currentProvider)
+      web3 = new Web3(web3.currentProvider);
 
       results = {
         web3: web3
-      }
+      };
 
       console.log('Injected web3 detected.');
 
-      resolve(results)
+      resolve(results);
     } else {
       // Fallback to localhost if no web3 injection.
-      var provider = new Web3.providers.HttpProvider(FALLBACK_PROVIDER)
+      var provider = new Web3.providers.HttpProvider(FALLBACK_PROVIDER);
 
-      web3 = new Web3(provider)
+      web3 = new Web3(provider);
 
       results = {
         web3: web3
-      }
+      };
 
       console.log('No web3 instance injected, using Local web3.');
 
-      resolve(results)
+      resolve(results);
     }
-  })
-})
+  });
+});
 
-export default getWeb3
+export default getWeb3;
