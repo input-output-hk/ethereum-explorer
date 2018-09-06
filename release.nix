@@ -2,6 +2,8 @@
 , ethExplorerSrc ? ./.
 }:
 let
+  pkgs = import nixpkgs {};
+
   listVersions = derivations: pkgs.stdenv.mkDerivation {
     name = "versions";
     src = ./.;
@@ -22,10 +24,10 @@ let
              derivations)
         );
   };
-in with import nixpkgs {}; {
+in rec {
   versions = listVersions [ ethExplorer ];
 
-  ethExplorer = callPackage ./. {
+  ethExplorer = pkgs.callPackage ./. {
     inherit ethExplorerSrc;
   };
 }
