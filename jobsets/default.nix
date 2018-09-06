@@ -8,7 +8,7 @@ let pkgs = import nixpkgs {};
 
     mkGitSrc = { repo, branch ? "refs/heads/master" }: {
       type = "git";
-      value = repo + " " + branch;
+      value = repo + " " + branch + " leaveDotGit";
       emailresponsible = false;
     };
 
